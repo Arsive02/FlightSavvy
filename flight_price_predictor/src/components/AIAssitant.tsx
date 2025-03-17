@@ -47,7 +47,7 @@ const AIAssistant: React.FC = () => {
     try {
       // Initialize OpenAI client
       const openai = new OpenAI({
-        apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Use React env variable naming
+        apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Use Vite env variable naming
         dangerouslyAllowBrowser: true // Enable browser usage (for development/demo only)
       });
       
