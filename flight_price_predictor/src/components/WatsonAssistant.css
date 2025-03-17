@@ -1,0 +1,47 @@
+/* Styles for Watson Assistant Widget */
+
+/* Adjust the launcher button to match FlightSavvy's design */
+.WACLauncher__Button {
+    background-color: #6e8efb !important; /* Match your site's primary color */
+    box-shadow: 0 4px 12px rgba(110, 142, 251, 0.3) !important;
+  }
+  
+  /* Custom styling when chat is open */
+  .WACContainer,
+  .WACContainer * {
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif !important;
+  }
+  
+  /* Make the chat window border match your site's style */
+  .WACContainer {
+    border-radius: 12px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+    overflow: hidden !important;
+  }
+  
+  /* Style the chat header */
+  .WACHeader {
+    background-color: #6e8efb !important;
+  }
+  
+  /* Style the assistant's responses to match your theme */
+  .WACMessageBubble--fromAssistant {
+    background-color: #f5f7ff !important;
+    border: 1px solid #e0e7ff !important;
+  }
+  
+  /* Style user messages */
+  .WACMessageBubble--fromUser {
+    background-color: #6e8efb !important;
+  }
+  
+  /* Ensure the Watson Assistant works on mobile */
+  @media (max-width: 768px) {
+    .WACContainer {
+      width: 90vw !important;
+      height: 80vh !important;
+      max-height: 600px !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+    }
+  }

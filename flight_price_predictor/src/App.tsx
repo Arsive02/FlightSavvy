@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import FlightSearch from './components/FlightSearch';
 import AIAssistant from './components/AIAssitant';
 import About from './components/About';
+import WatsonAssistantScript from './components/WatsonAssistantScript';
 import './App.css';
 
-const App: React.FC = () => {
+const App = () => {
   const [activeTab, setActiveTab] = useState<'search' | 'ai' | 'about'>('search');
 
   return (
@@ -28,6 +29,9 @@ const App: React.FC = () => {
           <a href="#">Terms of Service</a>
         </div>
       </footer>
+      
+      {/* Add Watson Assistant */}
+      <WatsonAssistantScript />
     </div>
   );
 };
