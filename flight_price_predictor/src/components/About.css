@@ -1,0 +1,70 @@
+/* About.css */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+}
+
+.bg-white {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+}
+
+.bg-white:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #3498db;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    color: #555;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+ol, ul {
+    padding-left: 1.5rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}

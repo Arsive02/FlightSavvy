@@ -1,0 +1,344 @@
+.flight-search {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .search-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .search-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+  
+  .search-header p {
+    color: var(--light-text);
+    font-size: 1rem;
+  }
+  
+  .search-container {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+  }
+  
+  .search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .span-2 {
+    grid-column: span 2;
+  }
+  
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  input, select {
+    padding: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  select[multiple] {
+    height: 8rem;
+  }
+  
+  .select-help {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    margin-top: 0.25rem;
+  }
+  
+  .passenger-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  
+  .passenger-type {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .number-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .number-input button {
+    width: 1.75rem;
+    height: 1.75rem;
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .number-input button:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .number-input input {
+    width: 2rem;
+    text-align: center;
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    padding: 0;
+  }
+  
+  .range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .range-inputs input {
+    width: 100%;
+  }
+  
+  .range-inputs span {
+    font-size: 0.875rem;
+    color: var(--light-text);
+  }
+  
+  .advanced-toggle {
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 0.875rem;
+    align-self: flex-start;
+    padding: 0;
+  }
+  
+  .advanced-options {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .search-button {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Search Results */
+  .search-results {
+    margin-top: 2rem;
+  }
+  
+  .search-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+  }
+  
+  .result-card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .route-info {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+  
+  .route-info h4 {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .current-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+  }
+  
+  .prediction-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+  }
+  
+  .prediction-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .prediction-label {
+    font-size: 0.75rem;
+    color: var(--light-text);
+  }
+  
+  .prediction-value {
+    font-size: 1rem;
+  }
+  
+  .prediction-value.good {
+    color: #10b981;
+  }
+  
+  .price-history {
+    margin-bottom: 1.5rem;
+  }
+  
+  .price-history h5 {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+    color: var(--light-text);
+  }
+  
+  .chart-placeholder {
+    height: 120px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .bar {
+    flex: 1;
+    min-width: 20px;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.2s ease;
+  }
+  
+  .bar:hover {
+    opacity: 0.8;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .action-buttons button {
+    flex: 1;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .set-alert {
+    background-color: white;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+  }
+  
+  .set-alert:hover {
+    background-color: rgba(167, 119, 227, 0.1);
+  }
+  
+  .view-details {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+  }
+  
+  .view-details:hover {
+    opacity: 0.9;
+  }
+  
+  @media (max-width: 992px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .prediction-details {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .span-2 {
+      grid-column: span 1;
+    }
+    
+    .route-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+  }
