@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './AIAssistant.css';
+import OpenAI from 'openai';
 
 interface Message {
   id: string;
@@ -42,7 +43,49 @@ const AIAssistant: React.FC = () => {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const callOpenAI = async (userMessage: string) => {
+    try {
+      // Initialize OpenAI client
+      const openai = new OpenAI({
+        apiKey: process.env.REACT_APP_OPENAI_API_KEY, // Use React env variable naming
+        dangerouslyAllowBrowser: true // Enable browser usage (for development/demo only)
+      });
+      
+      // Get previous messages for context (excluding initial greeting)
+      const messageHistory = messages.slice(1).map(msg => ({
+        role: msg.type === 'user' ? 'user' as const : 'assistant' as const,
+        content: msg.text
+      }));
+      
+      // Add current message
+      messageHistory.push({
+        role: 'user' as const,
+        content: userMessage
+      });
+
+      // Call OpenAI API
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o",
+        messages: [
+          // System message to provide context and role
+          {
+            role: "system" as const,
+            content: "You are a helpful flight booking assistant for FlightSavvy. You provide advice on the best times to book flights, price trends, and travel strategies. Keep responses concise and focused on flight booking advice. Respond in a friendly, helpful tone."
+          },
+          ...messageHistory
+        ],
+        temperature: 0.7,
+        max_tokens: 500
+      });
+
+      return response.choices[0].message.content;
+    } catch (error) {
+      console.error('Error calling OpenAI:', error);
+      return "I'm sorry, I encountered an error processing your request. Please try again later.";
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
 
@@ -58,37 +101,34 @@ const AIAssistant: React.FC = () => {
     setInput('');
     setIsTyping(true);
 
-    // Simulate AI response after a delay
-    setTimeout(() => {
-      const botResponses: Record<string, string> = {
-        "when is the cheapest time to fly to europe?": "Based on historical data, the cheapest time to fly to Europe is typically during the off-season (October to March, excluding holidays). January tends to be the least expensive month, with prices approximately 36% lower than peak summer rates. I recommend booking 4-6 months in advance for optimal pricing.",
-        "how far in advance should i book domestic flights?": "For domestic flights in the U.S., our data suggests booking 3-4 weeks in advance for the best prices. Booking too early (more than 6 months) or too late (less than 1 week) typically results in higher prices. For holiday travel, extend your booking window to 2-3 months in advance.",
-        "will flight prices drop closer to my travel date?": "While last-minute deals do occasionally happen, our data shows that flight prices typically increase as the departure date approaches, especially in the final 2 weeks. Airlines know that last-minute bookers are often business travelers or have urgent needs and are willing to pay premium prices.",
-        "what day of the week is best to book flights?": "While there's a popular belief that Tuesday is the best day to book, our analysis shows only a small average difference (<2%) between booking days. What matters more is how far in advance you book and the travel dates. If you're flexible, flying on Tuesday or Wednesday can save you 15-20% compared to weekend flights.",
-        "how do airline miles affect my booking strategy?": "When using airline miles, booking strategies differ from cash purchases. Award seats typically become available 11 months before the flight and the best availability is often found at that time. Unlike cash tickets, award tickets don't typically follow the same pricing patterns throughout the year.",
-      };
-
-      // Check if we have a predefined response for this query
-      let responseText = '';
-      const userQuery = input.toLowerCase().trim();
+    try {
+      // Get response from OpenAI
+      const responseText = await callOpenAI(input);
       
-      if (botResponses[userQuery]) {
-        responseText = botResponses[userQuery];
-      } else {
-        // Generic response for other queries
-        responseText = "That's a great question. Based on our flight data analysis, prices typically fluctuate based on demand, seasonality, and how far in advance you book. For most destinations, booking 4-8 weeks ahead usually offers the best value, but this can vary depending on your specific route and travel dates. Would you like me to analyze a specific route or time period for you?";
-      }
-
+      // Add bot response
       const botMessage: Message = {
         id: (Date.now() + 100).toString(),
         type: 'bot',
-        text: responseText,
+        text: responseText || "I'm sorry, I couldn't generate a response.",
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error('Error in handleSubmit:', error);
+      
+      // Add error message
+      const errorMessage: Message = {
+        id: (Date.now() + 100).toString(),
+        type: 'bot',
+        text: "I'm sorry, I encountered an error. Please try again later.",
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1500);
+    }
   };
 
   const handleSuggestionClick = (suggestion: string) => {
